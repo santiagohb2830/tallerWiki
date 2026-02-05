@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Sections Fragment</title>
+</head>
+<body>
+    <section id="sections" class="sections" th:fragment="sections">
+        <h2 class="section-title">Secciones de la Wiki</h2>
+        <div class="sections-grid">
+            <div class="section-card" data-section="1">
+                <div class="section-icon">
+                    <i class="fas fa-code"></i>
+                </div>
+                <h3>Desarrollo</h3>
+                <p>Guías y documentación para desarrolladores</p>
+                <div class="section-meta">
+                    <span><i class="fas fa-file-alt"></i> 5 documentos</span>
+                </div>
+            </div>
+            <div class="section-card" data-section="2">
+                <div class="section-icon">
+                    <i class="fas fa-database"></i>
+                </div>
+                <h3>Base de Datos</h3>
+                <p>Modelos, consultas y migraciones</p>
+                <div class="section-meta">
+                    <span><i class="fas fa-file-alt"></i> 3 documentos</span>
+                </div>
+            </div>
+            <div class="section-card" data-section="3">
+                <div class="section-icon">
+                    <i class="fas fa-cloud"></i>
+                </div>
+                <h3>Despliegue</h3>
+                <p>Instrucciones de deployment y cloud</p>
+                <div class="section-meta">
+                    <span><i class="fas fa-file-alt"></i> 4 documentos</span>
+                </div>
+            </div>
+            <div class="section-card" data-section="4">
+                <div class="section-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h3>Seguridad</h3>
+                <p>Mejores prácticas y configuraciones</p>
+                <div class="section-meta">
+                    <span><i class="fas fa-file-alt"></i> 2 documentos</span>
+                </div>
+            </div>
+            <div class="section-card" data-section="5">
+                <div class="section-icon">
+                    <i class="fas fa-chart-bar"></i>
+                </div>
+                <h3>Monitoreo</h3>
+                <p>Logs, métricas y debugging</p>
+                <div class="section-meta">
+                    <span><i class="fas fa-file-alt"></i> 3 documentos</span>
+                </div>
+            </div>
+            <div class="section-card" data-section="6">
+                <div class="section-icon">
+                    <i class="fas fa-cog"></i>
+                </div>
+                <h3>Configuración</h3>
+                <p>Variables y propiedades de entorno</p>
+                <div class="section-meta">
+                    <span><i class="fas fa-file-alt"></i> 2 documentos</span>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
