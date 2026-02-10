@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wiki de Proyecto - Documentación Colaborativa</title>
+    <link rel="stylesheet" th:href="@{/styles.css}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Header Fragment -->
+        <th:block th:replace="~{fragments/header :: header}"></th:block>
+
+        <main class="main">
+            <section id="home" class="hero">
+                <div class="hero-content">
+                    <h2 class="hero-title">Bienvenido a la Wiki del Proyecto</h2>
+                    <p class="hero-subtitle">Documentación colaborativa para el desarrollo y mantenimiento del proyecto</p>
+                    <div class="hero-buttons">
+                        <button class="btn btn-primary" id="exploreSections">
+                            <i class="fas fa-book-open"></i>
+                            Explorar Secciones
+                        </button>
+                        <button class="btn btn-secondary" id="viewDocumentation">
+                            <i class="fas fa-file-alt"></i>
+                            Ver Documentación
+                        </button>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <div class="floating-card card-1">
+                        <i class="fas fa-file-alt"></i>
+                        <span>Documentos</span>
+                    </div>
+                    <div class="floating-card card-2">
+                        <i class="fas fa-users"></i>
+                        <span>Colaboración</span>
+                    </div>
+                    <div class="floating-card card-3">
+                        <i class="fas fa-search"></i>
+                        <span>Búsqueda</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Wiki Sections Fragment -->
+            <th:block th:replace="~{fragments/sections :: sections}"></th:block>
+
+            <section id="documentation" class="documentation">
+                <h2 class="section-title">Documentación Principal</h2>
+                <div class="docs-container">
+                    <div class="doc-card">
+                        <div class="doc-icon">
+                            <i class="fas fa-file-code"></i>
+                        </div>
+                        <h3>Guías de Desarrollo</h3>
+                        <p>Documentación técnica para desarrolladores</p>
+                        <a href="#" class="btn-link">
+                            Ver Guías <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                    <div class="doc-card">
+                        <div class="doc-icon">
+                            <i class="fas fa-cog"></i>
+                        </div>
+                        <h3>Configuración</h3>
+                        <p>Instrucciones de instalación y configuración</p>
+                        <a href="#" class="btn-link">
+                            Ver Configuración <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                    <div class="doc-card">
+                        <div class="doc-icon">
+                            <i class="fas fa-question-circle"></i>
+                        </div>
+                        <h3>Preguntas Frecuentes</h3>
+                        <p>Respuestas a las preguntas más comunes</p>
+                        <a href="#" class="btn-link">
+                            Ver FAQs <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <section id="about" class="about">
+                <h2 class="section-title">Acerca de la Wiki</h2>
+                <div class="about-container">
+                    <div class="about-content">
+                        <h3>Propósito de la Wiki</h3>
+                        <p>Esta plataforma se creó para centralizar toda la documentación del proyecto, facilitando la colaboración entre equipos y la mantenibilidad del código. Aquí encontrarás:</p>
+                        <ul>
+                            <li>Guías de desarrollo y arquitectura</li>
+                            <li>Documentación de APIs y endpoints</li>
+                            <li>Instrucciones de despliegue y mantenimiento</li>
+                            <li>Soluciones a problemas comunes</li>
+                            <li>Recursos de aprendizaje</li>
+                        </ul>
+                    </div>
+                    <div class="about-stats">
+                        <div class="stat-item">
+                            <div class="stat-number" id="docCount">24</div>
+                            <div class="stat-label">Documentos</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number" id="sectionCount">8</div>
+                            <div class="stat-label">Secciones</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number" id="contributors">12</div>
+                            <div class="stat-label">Colaboradores</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer Fragment -->
+        <th:block th:replace="~{fragments/footer :: footer}"></th:block>
+    </div>
+
+    <div class="toast" id="toast">
+        <i class="fas fa-check-circle"></i>
+        <span id="toastMessage">Operación exitosa!</span>
+    </div>
+
+    <script th:src="@{/script.js}"></script>
+</body>
+</html>

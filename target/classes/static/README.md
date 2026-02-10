@@ -76,11 +76,7 @@ src/main/
     │   ├── styles.css           # Estilos CSS
     │   └── script.js            # JavaScript moderno
     └── templates/
-        ├── index.html           # Plantilla Thymeleaf principal
-        └── fragments/
-            ├── header.html      # Fragmento de cabecera
-            ├── footer.html      # Fragmento de pie de página
-            └── features.html    # Fragmento de características
+        └── index.html           # Plantilla Thymeleaf
 ```
 
 ## Uso de la Demo
@@ -102,32 +98,6 @@ src/main/
 2. Presiona "Enviar Mensaje" (simula envío con delay)
 3. Se muestra una notificación de éxito
 
-## Fragmentos Thymeleaf
-
-### Header Fragment
-**Uso:**
-```html
-<th:block th:replace="~{fragments/header :: header}"></th:block>
-```
-
-**Archivo:** `src/main/resources/templates/fragments/header.html`
-
-### Footer Fragment
-**Uso:**
-```html
-<th:block th:replace="~{fragments/footer :: footer}"></th:block>
-```
-
-**Archivo:** `src/main/resources/templates/fragments/footer.html`
-
-### Features Fragment
-**Uso:**
-```html
-<th:block th:replace="~{fragments/features :: features}"></th:block>
-```
-
-**Archivo:** `src/main/resources/templates/fragments/features.html`
-
 ## Customización
 
 ### Cambiar el Tema
@@ -145,11 +115,6 @@ Las animaciones del canvas se encuentran en la función `animateCanvas()` en `sc
 2. Crea nuevas plantillas Thymeleaf en `src/main/resources/templates/`
 3. Agrega estilos en `styles.css`
 4. Implementa funcionalidades JavaScript en `script.js`
-
-### Crear Nuevos Fragmentos
-1. Crea un nuevo archivo en `src/main/resources/templates/fragments/`
-2. Define el fragmento con `th:fragment="nombreFragmento"`
-3. Incluye el fragmento en cualquier plantilla usando `th:replace="~{fragments/nombreArchivo :: nombreFragmento}"`
 
 ## Performance y Optimizaciones
 
