@@ -49,7 +49,7 @@ public class IntegranteService {
                 "Explorar nuevas tecnologías",
                 "Deportes electrónicos"
             ),
-            "/images/perfiles/juan-david-rincon.jpg",
+            "/images/perfiles/juan-david-rincon.jpeg",
             "Desarrollador apasionado por la creación de aplicaciones móviles multiplataforma. " +
             "Especializado en Flutter para desarrollo móvil y con sólida experiencia en Java para aplicaciones empresariales. " +
             "Su interés en la dirección de proyectos le permite liderar equipos de desarrollo con una visión integral del ciclo de vida del software. " +
