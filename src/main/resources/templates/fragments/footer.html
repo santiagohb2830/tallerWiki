@@ -6,13 +6,53 @@
 <body>
     <footer class="footer" th:fragment="footer">
         <div class="footer-content">
-            <p>&copy; 2024 Wiki de Proyecto. Todos los derechos reservados.</p>
-            <div class="footer-links">
-                <a href="#home">Inicio</a>
-                <a href="#sections">Secciones</a>
-                <a href="#documentation">Documentación</a>
-                <a href="#about">Acerca de</a>
+            <div class="footer-section">
+                <h3 class="footer-title">
+                    <i class="fas fa-users"></i>
+                    Wiki del Equipo
+                </h3>
+                <p class="footer-description">
+                    Documentación colaborativa del equipo de desarrollo. 
+                    Conoce a nuestros integrantes y sus habilidades.
+                </p>
             </div>
+            
+            <div class="footer-section">
+                <h4>Navegación</h4>
+                <div class="footer-links">
+                    <a href="/"><i class="fas fa-home"></i> Inicio</a>
+                    <a href="/#equipo"><i class="fas fa-users"></i> Equipo</a>
+                    <a href="/contacto"><i class="fas fa-envelope"></i> Contacto</a>
+                </div>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Integrantes</h4>
+                <div class="footer-links">
+                    <a th:href="@{/integrante/{id}(id='juan-david-rincon')}">Juan D. Rincon</a>
+                    <a th:href="@{/integrante/{id}(id='andres-ortiz')}">Andres Ortiz</a>
+                    <a th:href="@{/integrante/{id}(id='tomas-ramirez')}">Tomas Ramirez</a>
+                    <a th:href="@{/integrante/{id}(id='santiago-hernandez')}">Santiago H.</a>
+                    <a th:href="@{/integrante/{id}(id='juan-pablo-espinilla')}">Juan P. Espinilla</a>
+                    <a th:href="@{/integrante/{id}(id='katherine-bravo')}">Katherine B.</a>
+                    <a th:href="@{/integrante/{id}(id='samuel-montealegre')}">Samuel M.</a>
+                </div>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Tecnologías</h4>
+                <div class="footer-tech">
+                    <span class="tech-badge"><i class="fab fa-java"></i> Java</span>
+                    <span class="tech-badge"><i class="fas fa-leaf"></i> Spring Boot</span>
+                    <span class="tech-badge"><i class="fas fa-code"></i> Thymeleaf</span>
+                    <span class="tech-badge"><i class="fab fa-docker"></i> Docker</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2024 Wiki del Equipo - Proyecto Académico</p>
+            <p>Desarrollado con <i class="fas fa-heart" style="color: #ef4444;"></i> usando Spring Boot y Thymeleaf</p>
         </div>
     </footer>
 </body>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org" th:fragment="layout(content)">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${paginaActual != null and paginaActual != 'inicio' ? paginaActual + ' - Wiki del Equipo' : 'Wiki del Equipo'}">Wiki del Equipo</title>
+    
+    <!-- Estilos -->
+    <link rel="stylesheet" th:href="@{/styles.css}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Estilos adicionales por página -->
+    <th:block th:replace="${additionalStyles}"></th:block>
+</head>
+<body class="wiki-body">
+    <!-- Contenedor principal -->
+    <div class="wiki-container">
+        <!-- Header Fragment -->
+        <th:block th:replace="~{fragments/header :: header}"></th:block>
+        
+        <!-- Contenido principal dinámico -->
+        <main class="wiki-main">
+            <th:block th:replace="${content}"></th:block>
+        </main>
+        
+        <!-- Footer Fragment -->
+        <th:block th:replace="~{fragments/footer :: footer}"></th:block>
+    </div>
+    
+    <!-- Toast para notificaciones -->
+    <div class="toast" id="toast">
+        <i class="fas fa-check-circle"></i>
+        <span id="toastMessage">Operación exitosa!</span>
+    </div>
+    
+    <!-- Scripts -->
+    <script th:src="@{/script.js}"></script>
+    
+    <!-- Scripts adicionales por página -->
+    <th:block th:replace="${additionalScripts}"></th:block>
+</body>
+</html>

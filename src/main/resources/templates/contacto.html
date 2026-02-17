@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto - Wiki del Equipo</title>
+    
+    <!-- Estilos -->
+    <link rel="stylesheet" th:href="@{/styles.css}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body class="wiki-body contacto-page">
+    <!-- Contenedor principal -->
+    <div class="wiki-container">
+        <!-- Header Fragment -->
+        <th:block th:replace="~{fragments/header :: header}"></th:block>
+        
+        <!-- Contenido principal -->
+        <main class="wiki-main">
+            <!-- Hero del Contacto -->
+            <section class="contacto-hero">
+                <div class="hero-background-pattern"></div>
+                <div class="contacto-hero-content">
+                    <h1 class="hero-title animate-fade-in">
+                        <i class="fas fa-envelope"></i>
+                        Contáctanos
+                    </h1>
+                    <p class="hero-subtitle animate-fade-in-delay">
+                        ¿Tienes alguna pregunta o sugerencia? Nos encantaría escucharte.
+                        Completa el formulario y nos pondremos en contacto contigo.
+                    </p>
+                </div>
+            </section>
+            
+            <!-- Mensaje de éxito -->
+            <div class="success-message animate-fade-in" th:if="${mensajeExito}">
+                <div class="success-content">
+                    <i class="fas fa-check-circle"></i>
+                    <span th:text="${mensajeExito}">Mensaje enviado exitosamente</span>
+                </div>
+            </div>
+            
+            <!-- Formulario de Contacto -->
+            <section class="contacto-form-section">
+                <div class="form-container">
+                    <form id="contactoForm" action="/contacto" method="POST" class="contacto-form" novalidate>
+                        <!-- Campo: Nombre completo -->
+                        <div class="form-group">
+                            <label for="nombre" class="form-label">
+                                <i class="fas fa-user"></i>
+                                Nombre completo <span class="required">*</span>
+                            </label>
+                            <input type="text" 
+                                   id="nombre" 
+                                   name="nombre" 
+                                   class="form-control" 
+                                   placeholder="Ingresa tu nombre completo"
+                                   required
+                                   minlength="3">
+                            <div class="error-message" id="nombreError"></div>
+                            <div class="field-hint">Mínimo 3 caracteres, no solo espacios en blanco</div>
+                        </div>
+                        
+                        <!-- Campo: Correo electrónico -->
+                        <div class="form-group">
+                            <label for="correo" class="form-label">
+                                <i class="fas fa-envelope"></i>
+                                Correo electrónico <span class="required">*</span>
+                            </label>
+                            <input type="email" 
+                                   id="correo" 
+                                   name="correo" 
+                                   class="form-control" 
+                                   placeholder="ejemplo@correo.com"
+                                   required>
+                            <div class="error-message" id="correoError"></div>
+                            <div class="field-hint">Debe incluir @ y un punto después del @</div>
+                        </div>
+                        
+                        <!-- Campo: Teléfono -->
+                        <div class="form-group">
+                            <label for="telefono" class="form-label">
+                                <i class="fas fa-phone"></i>
+                                Teléfono <span class="required">*</span>
+                            </label>
+                            <input type="tel" 
+                                   id="telefono" 
+                                   name="telefono" 
+                                   class="form-control" 
+                                   placeholder="Ingresa tu número de teléfono"
+                                   required
+                                   minlength="7"
+                                   maxlength="15">
+                            <div class="error-message" id="telefonoError"></div>
+                            <div class="field-hint">Solo números, entre 7 y 15 dígitos</div>
+                        </div>
+                        
+                        <!-- Campo: Asunto -->
+                        <div class="form-group">
+                            <label for="asunto" class="form-label">
+                                <i class="fas fa-tag"></i>
+                                Asunto <span class="required">*</span>
+                            </label>
+                            <select id="asunto" 
+                                    name="asunto" 
+                                    class="form-control form-select"
+                                    required>
+                                <option value="">Seleccione una opción</option>
+                                <option th:each="asunto : ${asuntos}" 
+                                        th:value="${asunto}" 
+                                        th:text="${asunto}">Asunto</option>
+                            </select>
+                            <div class="error-message" id="asuntoError"></div>
+                            <div class="field-hint">Debes seleccionar una opción válida</div>
+                        </div>
+                        
+                        <!-- Campo: Mensaje -->
+                        <div class="form-group">
+                            <label for="mensaje" class="form-label">
+                                <i class="fas fa-comment-alt"></i>
+                                Mensaje <span class="required">*</span>
+                            </label>
+                            <textarea id="mensaje" 
+                                      name="mensaje" 
+                                      class="form-control form-textarea" 
+                                      placeholder="Escribe tu mensaje aquí..."
+                                      required
+                                      minlength="20"
+                                      maxlength="400"
+                                      rows="5"></textarea>
+                            <div class="textarea-info">
+                                <div class="error-message" id="mensajeError"></div>
+                                <div class="char-counter">
+                                    <span id="charCount">0</span> / 400 caracteres
+                                    <span class="char-warning" id="charWarning"></span>
+                                </div>
+                            </div>
+                            <div class="field-hint">Mínimo 20 caracteres, máximo 400</div>
+                        </div>
+                        
+                        <!-- Resumen de validación -->
+                        <div class="validation-summary" id="validationSummary" style="display: none;">
+                            <div class="summary-header">
+                                <i class="fas fa-exclamation-triangle"></i>
+                                Por favor corrige los siguientes errores:
+                            </div>
+                            <ul class="summary-list" id="summaryList"></ul>
+                        </div>
+                        
+                        <!-- Botones del formulario -->
+                        <div class="form-actions">
+                            <button type="button" class="btn btn-secondary" id="limpiarBtn">
+                                <i class="fas fa-eraser"></i>
+                                Limpiar
+                            </button>
+                            <button type="submit" class="btn btn-primary btn-glow" id="enviarBtn">
+                                <i class="fas fa-paper-plane"></i>
+                                Enviar Mensaje
+                            </button>
+                        </div>
+                        
+                        <!-- Indicador de formulario válido -->
+                        <div class="form-status" id="formStatus">
+                            <div class="status-indicator" id="statusIndicator">
+                                <i class="fas fa-times-circle"></i>
+                                <span id="statusText">Formulario incompleto</span>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                
+                <!-- Información de contacto adicional -->
+                <div class="contact-info">
+                    <div class="info-card animate-on-scroll">
+                        <div class="info-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <h4>Ubicación</h4>
+                        <p>Universidad Javeriana<br>Bogotá, Colombia</p>
+                    </div>
+                    <div class="info-card animate-on-scroll">
+                        <div class="info-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <h4>Horario</h4>
+                        <p>Lunes a Viernes<br>8:00 AM - 6:00 PM</p>
+                    </div>
+                    <div class="info-card animate-on-scroll">
+                        <div class="info-icon">
+                            <i class="fas fa-info-circle"></i>
+                        </div>
+                        <h4>Información</h4>
+                        <p>Respuesta en<br>24-48 horas</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+        
+        <!-- Footer Fragment -->
+        <th:block th:replace="~{fragments/footer :: footer}"></th:block>
+    </div>
+    
+    <!-- Toast para notificaciones -->
+    <div class="toast" id="toast">
+        <i class="fas fa-check-circle"></i>
+        <span id="toastMessage">Operación exitosa!</span>
+    </div>
+    
+    <!-- Scripts -->
+    <script th:src="@{/script.js}"></script>
+    <script th:src="@{/validaciones.js}"></script>
+</body>
+</html>
