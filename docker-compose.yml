@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  wiki-equipo:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: wiki-equipo:latest
+    container_name: wiki-equipo
+    ports:
+      - "8080:8080"
+    restart: unless-stopped
+    environment:
+      - SPRING_PROFILES_ACTIVE=prod
+      - JAVA_OPTS=-Xmx512m -Xms256m
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s

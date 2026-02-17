@@ -79,7 +79,7 @@ public class IntegranteService {
                 "Deportes en equipo",
                 "Competencias de seguridad informática"
             ),
-            "/images/perfiles/andres-ortiz.jpg",
+            "/images/perfiles/andres-ortiz.jpeg",
             "Experto en diseño y optimización de bases de datos relacionales. " +
             "Su conocimiento en ciberseguridad le permite implementar arquitecturas seguras y proteger la integridad de los datos. " +
             "Combina su pasión por las porras con el trabajo en equipo disciplinado. " +
