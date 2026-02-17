@@ -109,7 +109,7 @@ public class IntegranteService {
                 "Análisis de datos deportivos",
                 "Automatización de tareas"
             ),
-            "/images/perfiles/tomas-ramirez.jpg",
+            "/images/perfiles/tomas-ramirez.jpeg",
             "Especialista en sistemas de gestión de información, enfocado en la organización y procesamiento eficiente de datos empresariales. " +
             "Domina tanto Python para análisis de datos como Java para desarrollo de sistemas robustos. " +
             "Su enfoque analítico le permite identificar patrones y optimizar flujos de trabajo. " +
@@ -139,7 +139,7 @@ public class IntegranteService {
                 "Viajes por carretera",
                 "Fotografía de paisajes"
             ),
-            "/images/perfiles/santiago-hernandez.jpg",
+            "/images/perfiles/santiago-hernandez.jpeg",
             "Científico de datos con experiencia en análisis predictivo y machine learning. " +
             "Su pasión por las motos refleja su espíritu aventurero y su capacidad para tomar decisiones rápidas. " +
             "Lidera proyectos de datos con metodologías ágiles, combinando el rigor analítico con la creatividad en la resolución de problemas. " +
@@ -169,7 +169,7 @@ public class IntegranteService {
                 "Diseño de interfaces",
                 "Tendencias tecnológicas"
             ),
-            "/images/perfiles/juan-pablo-espinilla.jpg",
+            "/images/perfiles/juan-pablo-espinilla.jpeg",
             "Arquitecto de software enfocado en seguridad informática. " +
             "Diseña sistemas escalables y seguros, implementando mejores prácticas de protección de datos. " +
             "Su interés en la moda le brinda una perspectiva única en diseño de interfaces y experiencia de usuario. " +
@@ -200,7 +200,7 @@ public class IntegranteService {
                 "Conciertos",
                 "Cantar"
             ),
-            "/images/perfiles/katherine-bravo.jpg",
+            "/images/perfiles/katherine-bravo.jpeg",
             "Especialista en administración y optimización de bases de datos. " +
             "Su creatividad se refleja tanto en el diseño de esquemas eficientes como en su pasión por la música pop. " +
             "Combina el análisis técnico con una perspectiva artística única, lo que le permite encontrar soluciones innovadoras a problemas complejos. " +
@@ -231,7 +231,7 @@ public class IntegranteService {
                 "Open Source",
                 "Automatización"
             ),
-            "/images/perfiles/samuel-montealegre.jpg",
+            "/images/perfiles/samuel-montealegre.jpeg",
             "Desarrollador backend especializado en la creación de APIs robustas y servicios escalables. " +
             "Su experiencia en bases de datos le permite diseñar arquitecturas de datos eficientes. " +
             "Apasionado por las nuevas tecnologías y tendencias del desarrollo de software. " +
