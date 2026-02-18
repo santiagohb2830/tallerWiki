@@ -1,21 +1,47 @@
 version: '3.8'
 
 services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: wiki-postgres
+    environment:
+      - POSTGRES_DB=wiki_db
+      - POSTGRES_USER=wiki_user
+      - POSTGRES_PASSWORD=wiki_pass
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U wiki_user -d wiki_db"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 10s
+
   wiki-equipo:
     build:
       context: .
       dockerfile: Dockerfile
     image: wiki-equipo:latest
     container_name: wiki-equipo
+    depends_on:
+      postgres:
+        condition: service_healthy
     ports:
       - "8080:8080"
     restart: unless-stopped
     environment:
       - SPRING_PROFILES_ACTIVE=prod
-      - JAVA_OPTS=-Xmx512m -Xms256m
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/wiki_db
+      - SPRING_DATASOURCE_USERNAME=wiki_user
+      - SPRING_DATASOURCE_PASSWORD=wiki_pass
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8080"]
+      test: ["CMD-SHELL", "wget -qO- http://localhost:8080 >/dev/null 2>&1 || exit 1"]
       interval: 30s
       timeout: 10s
       retries: 3
       start_period: 40s
+
+volumes:
+  postgres_data:

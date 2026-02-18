@@ -1,15 +1,18 @@
 package co.javeriana.dw.thymeleaf.controller;
 
+import co.javeriana.dw.thymeleaf.dto.ContactFormRequest;
 import co.javeriana.dw.thymeleaf.model.Integrante;
+import co.javeriana.dw.thymeleaf.service.ContactMessageService;
 import co.javeriana.dw.thymeleaf.service.IntegranteService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import jakarta.validation.Valid;
 
 import java.util.Optional;
 
@@ -19,9 +22,14 @@ import java.util.Optional;
  */
 @Controller
 public class WikiController {
-    
-    @Autowired
-    private IntegranteService integranteService;
+
+    private final IntegranteService integranteService;
+    private final ContactMessageService contactMessageService;
+
+    public WikiController(IntegranteService integranteService, ContactMessageService contactMessageService) {
+        this.integranteService = integranteService;
+        this.contactMessageService = contactMessageService;
+    }
     
     /**
      * Página de inicio de la Wiki.
@@ -79,17 +87,10 @@ public class WikiController {
     @GetMapping("/contacto")
     public String contacto(Model model) {
         model.addAttribute("paginaActual", "contacto");
-        
-        // Opciones para el campo de asunto
-        model.addAttribute("asuntos", new String[]{
-            "Consulta General",
-            "Soporte Técnico",
-            "Colaboración",
-            "Sugerencia",
-            "Reporte de Error",
-            "Otro"
-        });
-        
+        agregarAsuntos(model);
+        if (!model.containsAttribute("contactForm")) {
+            model.addAttribute("contactForm", new ContactFormRequest());
+        }
         return "contacto";
     }
     
@@ -100,29 +101,21 @@ public class WikiController {
      */
     @PostMapping("/contacto")
     public String procesarContacto(
-            @RequestParam String nombre,
-            @RequestParam String correo,
-            @RequestParam String telefono,
-            @RequestParam String asunto,
-            @RequestParam String mensaje,
+            @Valid @ModelAttribute("contactForm") ContactFormRequest contactForm,
+            BindingResult bindingResult,
             Model model,
             RedirectAttributes redirectAttributes) {
-        
-        // Aquí se podría implementar la lógica de envío real
-        // Por ahora solo simulamos el procesamiento exitoso
-        
-        // Log del mensaje recibido (para demostración)
-        System.out.println("=== Mensaje de Contacto Recibido ===");
-        System.out.println("Nombre: " + nombre);
-        System.out.println("Correo: " + correo);
-        System.out.println("Teléfono: " + telefono);
-        System.out.println("Asunto: " + asunto);
-        System.out.println("Mensaje: " + mensaje);
-        System.out.println("====================================");
-        
-        // Agregar mensaje de éxito
+
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("paginaActual", "contacto");
+            agregarAsuntos(model);
+            return "contacto";
+        }
+
+        contactMessageService.save(contactForm);
+
         redirectAttributes.addFlashAttribute("mensajeExito", 
-            "¡Gracias por tu mensaje, " + nombre + "! Nos pondremos en contacto contigo pronto.");
+            "¡Gracias por tu mensaje, " + contactForm.getNombre() + "! Nos pondremos en contacto contigo pronto.");
         
         return "redirect:/contacto";
     }
@@ -144,5 +137,16 @@ public class WikiController {
         model.addAttribute("paginaActual", "acerca");
         model.addAttribute("integrantes", integranteService.obtenerTodos());
         return "index";
+    }
+
+    private void agregarAsuntos(Model model) {
+        model.addAttribute("asuntos", new String[]{
+                "Consulta General",
+                "Soporte Técnico",
+                "Colaboración",
+                "Sugerencia",
+                "Reporte de Error",
+                "Otro"
+        });
     }
 }
