@@ -110,10 +110,10 @@ public class IntegranteService {
                 "Automatización de tareas"
             ),
             "/images/perfiles/tomas-ramirez.jpeg",
-            "Especialista en sistemas de gestión de información, enfocado en la organización y procesamiento eficiente de datos empresariales. " +
-            "Domina tanto Python para análisis de datos como Java para desarrollo de sistemas robustos. " +
-            "Su enfoque analítico le permite identificar patrones y optimizar flujos de trabajo. " +
-            "Experiencia en la implementación de soluciones de Business Intelligence para la toma de decisiones.",
+            "Me apasionan los sistemas de gestión de información y cómo una buena estructura de datos puede transformar la forma en que trabaja una organización. " +
+            "He trabajado en soluciones de Business Intelligence orientadas a la toma de decisiones, conectando datos con necesidades reales del negocio. " +
+            "Tengo habilidades para analizar y optimizar flujos de trabajo, buscando siempre procesos más claros y eficientes. " +
+            "Mis lenguajes principales son Python y Java, que uso de forma complementaria para análisis y desarrollo.",
             "#8B5CF6" // Púrpura
         ));
         
