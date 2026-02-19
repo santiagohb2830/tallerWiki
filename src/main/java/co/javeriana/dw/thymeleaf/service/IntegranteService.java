@@ -64,8 +64,7 @@ public class IntegranteService {
             Arrays.asList(
                 "Bases de Datos",
                 "Ciberseguridad",
-                "Administración de Sistemas de Bases de Datos",
-                "Cyberseguridad"
+                "Administración de Sistemas de Bases de Datos"
             ),
             Arrays.asList(
                 "Java",
