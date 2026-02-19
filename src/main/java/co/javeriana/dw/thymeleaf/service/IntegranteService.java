@@ -140,7 +140,7 @@ public class IntegranteService {
                 "Fotografía de paisajes"
             ),
             "/images/perfiles/santiago-hernandez.jpg",
-            "Científico de datos con experiencia en análisis predictivo y machine learning. " +
+            "Ingeniero de Sistemas con experiencia en machine learning. " +
             "Su pasión por las motos refleja su espíritu aventurero y su capacidad para tomar decisiones rápidas. " +
             "Lidera proyectos de datos con metodologías ágiles, combinando el rigor analítico con la creatividad en la resolución de problemas. " +
             "Especializado en la transformación de datos en insights accionables para la toma de decisiones estratégicas.",
