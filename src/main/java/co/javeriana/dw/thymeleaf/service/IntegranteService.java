@@ -65,19 +65,20 @@ public class IntegranteService {
                 "Bases de Datos",
                 "Ciberseguridad",
                 "Administración de Sistemas de Bases de Datos",
-                "Seguridad de la Información"
+                "Cyberseguridad"
             ),
             Arrays.asList(
                 "Java",
+                "C++",
+                "Python",
                 "SQL",
-                "PL/SQL",
-                "PostgreSQL",
-                "MySQL"
+                "PostgreSQL"
             ),
             Arrays.asList(
-                "Porras",
-                "Deportes en equipo",
-                "Competencias de seguridad informática"
+                "Porrismo",
+                "Deporte",
+                "Trabajo en equipo",
+                "Disciplina"
             ),
             "/images/perfiles/andres-ortiz.jpeg",
             "Experto en diseño y optimización de bases de datos relacionales. " +
