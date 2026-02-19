@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${integrante.nombre + ' - Wiki del Equipo'}">Integrante - Wiki del Equipo</title>
+    
+    <!-- Estilos -->
+    <link rel="stylesheet" th:href="@{/styles.css}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Color personalizado del integrante -->
+    <style th:inline="text">
+        :root {
+            --integrant-color: [[${integrante.colorTema}]];
+        }
+    </style>
+</head>
+<body class="wiki-body integrante-page">
+    <!-- Contenedor principal -->
+    <div class="wiki-container">
+        <!-- Header Fragment -->
+        <th:block th:replace="~{fragments/header :: header}"></th:block>
+        
+        <!-- Contenido principal -->
+        <main class="wiki-main">
+            <!-- Hero del Integrante -->
+            <section class="integrante-hero" th:style="'--integrant-color: ' + ${integrante.colorTema}">
+                <div class="hero-background-pattern"></div>
+                <div class="integrante-hero-content">
+                    <a href="/" class="back-link">
+                        <i class="fas fa-arrow-left"></i>
+                        Volver al equipo
+                    </a>
+                    
+                    <div class="integrante-profile">
+                        <div class="profile-image-container">
+                            <div class="profile-image-placeholder" th:style="'--integrant-color: ' + ${integrante.colorTema}">
+                                <span class="placeholder-initials" th:text="${integrante.iniciales}">JD</span>
+                            </div>
+                            <img th:src="${integrante.imagen}" 
+                                 th:alt="${integrante.nombre}" 
+                                 class="profile-image"
+                                 onerror="this.style.display='none'">
+                            <div class="profile-glow" th:style="'--integrant-color: ' + ${integrante.colorTema}"></div>
+                        </div>
+                        
+                        <div class="profile-info">
+                            <h1 class="profile-name animate-fade-in" th:text="${integrante.nombre}">Nombre</h1>
+                            
+                            <div class="profile-badges animate-fade-in-delay">
+                                <span class="badge badge-primary" th:each="area : ${integrante.areasInteres}" th:text="${area}">
+                                    <i class="fas fa-star"></i>
+                                    Área
+                                </span>
+                            </div>
+                            
+                            <p class="profile-description animate-fade-in-delay-2" th:text="${integrante.descripcion}">
+                                Descripción del integrante...
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Sección de Habilidades -->
+            <section class="skills-section">
+                <div class="section-header">
+                    <h2 class="section-title">
+                        <span class="title-icon"><i class="fas fa-code"></i></span>
+                        Lenguajes y Tecnologías
+                    </h2>
+                </div>
+                
+                <div class="skills-container">
+                    <div class="skill-card animate-on-scroll" th:each="lenguaje, iterStat : ${integrante.lenguajes}">
+                        <div class="skill-icon" th:style="'--skill-color: ' + ${integrante.colorTema}">
+                            <i th:class="${lenguaje.toLowerCase().contains('java') ? 'fab fa-java' : 
+                                          lenguaje.toLowerCase().contains('python') ? 'fab fa-python' :
+                                          lenguaje.toLowerCase().contains('sql') ? 'fas fa-database' :
+                                          lenguaje.toLowerCase().contains('flutter') ? 'fas fa-mobile-alt' :
+                                          lenguaje.toLowerCase().contains('docker') ? 'fab fa-docker' :
+                                          'fas fa-code'}"></i>
+                        </div>
+                        <div class="skill-info">
+                            <h4 class="skill-name" th:text="${lenguaje}">Lenguaje</h4>
+                            <div class="skill-bar">
+                                <div class="skill-progress" th:style="'width: ' + ${80 + (iterStat.index * 5)} + '%; --skill-color: ' + ${integrante.colorTema}"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Sección de Áreas de Interés -->
+            <section class="interests-section">
+                <div class="section-header">
+                    <h2 class="section-title">
+                        <span class="title-icon"><i class="fas fa-lightbulb"></i></span>
+                        Áreas de Interés
+                    </h2>
+                </div>
+                
+                <div class="interests-grid">
+                    <div class="interest-card animate-on-scroll" th:each="area : ${integrante.areasInteres}">
+                        <div class="interest-icon" th:style="'--interest-color: ' + ${integrante.colorTema}">
+                            <i th:class="${area.toLowerCase().contains('base') ? 'fas fa-database' :
+                                          area.toLowerCase().contains('ciberseguridad') or area.toLowerCase().contains('seguridad') ? 'fas fa-shield-alt' :
+                                          area.toLowerCase().contains('móvil') or area.toLowerCase().contains('movil') ? 'fas fa-mobile-alt' :
+                                          area.toLowerCase().contains('datos') or area.toLowerCase().contains('data') ? 'fas fa-chart-bar' :
+                                          area.toLowerCase().contains('backend') ? 'fas fa-server' :
+                                          area.toLowerCase().contains('arquitectura') ? 'fas fa-project-diagram' :
+                                          area.toLowerCase().contains('gestión') or area.toLowerCase().contains('direccion') ? 'fas fa-tasks' :
+                                          'fas fa-star'}"></i>
+                        </div>
+                        <h4 class="interest-title" th:text="${area}">Área de Interés</h4>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Sección de Pasatiempos -->
+            <section class="hobbies-section">
+                <div class="section-header">
+                    <h2 class="section-title">
+                        <span class="title-icon"><i class="fas fa-heart"></i></span>
+                        Pasatiempos e Intereses Personales
+                    </h2>
+                </div>
+                
+                <div class="hobbies-container">
+                    <div class="hobby-item animate-on-scroll" th:each="pasatiempo : ${integrante.pasatiempos}">
+                        <div class="hobby-icon" th:style="'--hobby-color: ' + ${integrante.colorTema}">
+                            <i th:class="${pasatiempo.toLowerCase().contains('videojuego') ? 'fas fa-gamepad' :
+                                          pasatiempo.toLowerCase().contains('moto') ? 'fas fa-motorcycle' :
+                                          pasatiempo.toLowerCase().contains('música') or pasatiempo.toLowerCase().contains('pop') ? 'fas fa-music' :
+                                          pasatiempo.toLowerCase().contains('porras') ? 'fas fa-users' :
+                                          pasatiempo.toLowerCase().contains('moda') ? 'fas fa-tshirt' :
+                                          pasatiempo.toLowerCase().contains('tecnología') or pasatiempo.toLowerCase().contains('tecnologia') ? 'fas fa-laptop' :
+                                          'fas fa-heart'}"></i>
+                        </div>
+                        <span class="hobby-text" th:text="${pasatiempo}">Pasatiempo</span>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Sección de Contacto -->
+            <section class="contact-cta-section">
+                <div class="cta-card" th:style="'--cta-color: ' + ${integrante.colorTema}">
+                    <div class="cta-content">
+                        <h3 class="cta-title">¿Quieres colaborar con <span th:text="${integrante.primerNombre}">Nombre</span>?</h3>
+                        <p class="cta-text">Envíanos un mensaje y te pondremos en contacto.</p>
+                        <a href="/contacto" class="btn btn-primary btn-glow">
+                            <i class="fas fa-envelope"></i>
+                            Contactar
+                        </a>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Navegación a otros integrantes -->
+            <section class="other-integrantes-section">
+                <div class="section-header">
+                    <h2 class="section-title">
+                        <span class="title-icon"><i class="fas fa-users"></i></span>
+                        Otros Integrantes
+                    </h2>
+                </div>
+                <div class="other-integrantes-nav">
+                    <a th:href="@{/integrante/{id}(id=${integrante.id})}" 
+                       class="other-integrante-link"
+                       th:each="integrante : ${@integranteService.obtenerTodos()}">
+                        <div class="mini-avatar" th:style="'--avatar-color: ' + ${integrante.colorTema}">
+                            <span th:text="${integrante.iniciales}">IN</span>
+                        </div>
+                        <span class="mini-name" th:text="${integrante.primerNombre}">Nombre</span>
+                    </a>
+                </div>
+            </section>
+        </main>
+        
+        <!-- Footer Fragment -->
+        <th:block th:replace="~{fragments/footer :: footer}"></th:block>
+    </div>
+    
+    <!-- Toast para notificaciones -->
+    <div class="toast" id="toast">
+        <i class="fas fa-check-circle"></i>
+        <span id="toastMessage">Operación exitosa!</span>
+    </div>
+    
+    <!-- Scripts -->
+    <script th:src="@{/script.js}"></script>
+</body>
+</html>

@@ -3,127 +3,210 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wiki de Proyecto - Documentación Colaborativa</title>
+    <title>Wiki del Equipo - Inicio</title>
+    
+    <!-- Estilos -->
     <link rel="stylesheet" th:href="@{/styles.css}">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
-<body>
-    <div class="container">
+<body class="wiki-body">
+    <!-- Contenedor principal -->
+    <div class="wiki-container">
         <!-- Header Fragment -->
         <th:block th:replace="~{fragments/header :: header}"></th:block>
-
-        <main class="main">
-            <section id="home" class="hero">
+        
+        <!-- Contenido principal -->
+        <main class="wiki-main">
+            <!-- Hero Section -->
+            <section id="home" class="hero-section">
+                <div class="hero-background">
+                    <div class="hero-shapes">
+                        <div class="shape shape-1"></div>
+                        <div class="shape shape-2"></div>
+                        <div class="shape shape-3"></div>
+                        <div class="shape shape-4"></div>
+                    </div>
+                </div>
                 <div class="hero-content">
-                    <h2 class="hero-title">Bienvenido a la Wiki del Proyecto</h2>
-                    <p class="hero-subtitle">Documentación colaborativa para el desarrollo y mantenimiento del proyecto</p>
-                    <div class="hero-buttons">
-                        <button class="btn btn-primary" id="exploreSections">
-                            <i class="fas fa-book-open"></i>
-                            Explorar Secciones
-                        </button>
-                        <button class="btn btn-secondary" id="viewDocumentation">
-                            <i class="fas fa-file-alt"></i>
-                            Ver Documentación
-                        </button>
+                    <h1 class="hero-title animate-fade-in">
+                        <span class="title-line">Bienvenidos a la</span>
+                        <span class="title-highlight">Wiki del Equipo</span>
+                    </h1>
+                    <p class="hero-subtitle animate-fade-in-delay">
+                        Conoce a los <span th:text="${totalIntegrantes}">7</span> integrantes de nuestro equipo de desarrollo. 
+                        Descubre sus habilidades, áreas de interés y lo que los hace únicos.
+                    </p>
+                    <div class="hero-buttons animate-fade-in-delay-2">
+                        <a href="#equipo" class="btn btn-primary btn-glow">
+                            <i class="fas fa-users"></i>
+                            Conocer al Equipo
+                        </a>
+                        <a href="/contacto" class="btn btn-secondary">
+                            <i class="fas fa-envelope"></i>
+                            Contáctanos
+                        </a>
                     </div>
                 </div>
                 <div class="hero-visual">
-                    <div class="floating-card card-1">
-                        <i class="fas fa-file-alt"></i>
-                        <span>Documentos</span>
-                    </div>
-                    <div class="floating-card card-2">
-                        <i class="fas fa-users"></i>
-                        <span>Colaboración</span>
-                    </div>
-                    <div class="floating-card card-3">
-                        <i class="fas fa-search"></i>
-                        <span>Búsqueda</span>
+                    <div class="floating-icons">
+                        <div class="floating-icon icon-1"><i class="fab fa-java"></i></div>
+                        <div class="floating-icon icon-2"><i class="fab fa-python"></i></div>
+                        <div class="floating-icon icon-3"><i class="fas fa-database"></i></div>
+                        <div class="floating-icon icon-4"><i class="fas fa-code"></i></div>
+                        <div class="floating-icon icon-5"><i class="fas fa-mobile-alt"></i></div>
+                        <div class="floating-icon icon-6"><i class="fas fa-shield-alt"></i></div>
                     </div>
                 </div>
             </section>
-
-            <!-- Wiki Sections Fragment -->
-            <th:block th:replace="~{fragments/sections :: sections}"></th:block>
-
-            <section id="documentation" class="documentation">
-                <h2 class="section-title">Documentación Principal</h2>
-                <div class="docs-container">
-                    <div class="doc-card">
-                        <div class="doc-icon">
-                            <i class="fas fa-file-code"></i>
+            
+            <!-- Estadísticas -->
+            <section class="stats-section">
+                <div class="stats-container">
+                    <div class="stat-card animate-on-scroll">
+                        <div class="stat-icon">
+                            <i class="fas fa-users"></i>
                         </div>
-                        <h3>Guías de Desarrollo</h3>
-                        <p>Documentación técnica para desarrolladores</p>
-                        <a href="#" class="btn-link">
-                            Ver Guías <i class="fas fa-arrow-right"></i>
-                        </a>
+                        <div class="stat-number" th:text="${totalIntegrantes}">7</div>
+                        <div class="stat-label">Integrantes</div>
                     </div>
-                    <div class="doc-card">
-                        <div class="doc-icon">
-                            <i class="fas fa-cog"></i>
+                    <div class="stat-card animate-on-scroll">
+                        <div class="stat-icon">
+                            <i class="fas fa-code"></i>
                         </div>
-                        <h3>Configuración</h3>
-                        <p>Instrucciones de instalación y configuración</p>
-                        <a href="#" class="btn-link">
-                            Ver Configuración <i class="fas fa-arrow-right"></i>
-                        </a>
+                        <div class="stat-number">5+</div>
+                        <div class="stat-label">Lenguajes</div>
                     </div>
-                    <div class="doc-card">
-                        <div class="doc-icon">
-                            <i class="fas fa-question-circle"></i>
+                    <div class="stat-card animate-on-scroll">
+                        <div class="stat-icon">
+                            <i class="fas fa-lightbulb"></i>
                         </div>
-                        <h3>Preguntas Frecuentes</h3>
-                        <p>Respuestas a las preguntas más comunes</p>
-                        <a href="#" class="btn-link">
-                            Ver FAQs <i class="fas fa-arrow-right"></i>
-                        </a>
+                        <div class="stat-number">10+</div>
+                        <div class="stat-label">Áreas de Interés</div>
+                    </div>
+                    <div class="stat-card animate-on-scroll">
+                        <div class="stat-icon">
+                            <i class="fas fa-project-diagram"></i>
+                        </div>
+                        <div class="stat-number">1</div>
+                        <div class="stat-label">Equipo Unido</div>
                     </div>
                 </div>
             </section>
-
-            <section id="about" class="about">
-                <h2 class="section-title">Acerca de la Wiki</h2>
-                <div class="about-container">
-                    <div class="about-content">
-                        <h3>Propósito de la Wiki</h3>
-                        <p>Esta plataforma se creó para centralizar toda la documentación del proyecto, facilitando la colaboración entre equipos y la mantenibilidad del código. Aquí encontrarás:</p>
-                        <ul>
-                            <li>Guías de desarrollo y arquitectura</li>
-                            <li>Documentación de APIs y endpoints</li>
-                            <li>Instrucciones de despliegue y mantenimiento</li>
-                            <li>Soluciones a problemas comunes</li>
-                            <li>Recursos de aprendizaje</li>
-                        </ul>
+            
+            <!-- Sección del Equipo -->
+            <section id="equipo" class="team-section">
+                <div class="section-header">
+                    <h2 class="section-title">
+                        <span class="title-icon"><i class="fas fa-users"></i></span>
+                        Nuestro Equipo
+                    </h2>
+                    <p class="section-subtitle">
+                        Conoce a cada uno de los integrantes que hacen posible este proyecto
+                    </p>
+                </div>
+                
+                <div class="team-grid">
+                    <!-- Tarjeta de cada integrante -->
+                    <div class="team-card animate-on-scroll" th:each="integrante : ${integrantes}">
+                        <div class="card-glow" th:style="'--card-color: ' + ${integrante.colorTema}"></div>
+                        <div class="card-image-container">
+                            <div class="card-image-placeholder" th:style="'--card-color: ' + ${integrante.colorTema}">
+                                <span class="placeholder-initials" th:text="${integrante.iniciales}">JD</span>
+                            </div>
+                            <img th:src="${integrante.imagen}" 
+                                 th:alt="${integrante.nombre}" 
+                                 class="card-image"
+                                 onerror="this.style.display='none'">
+                            <div class="card-overlay">
+                                <a th:href="@{/integrante/{id}(id=${integrante.id})}" class="overlay-link">
+                                    <i class="fas fa-eye"></i>
+                                    Ver Perfil
+                                </a>
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <h3 class="card-name" th:text="${integrante.nombre}">Nombre</h3>
+                            <div class="card-areas">
+                                <span class="area-tag" th:each="area : ${integrante.areasInteres}" th:text="${area}">Área</span>
+                            </div>
+                            <div class="card-languages">
+                                <span class="lang-badge" th:each="lenguaje : ${integrante.lenguajes}" th:text="${lenguaje}">Lenguaje</span>
+                            </div>
+                            <div class="card-hobbies">
+                                <i class="fas fa-heart"></i>
+                                <span th:text="${#strings.listJoin(integrante.pasatiempos, ', ')}">Pasatiempos</span>
+                            </div>
+                            <a th:href="@{/integrante/{id}(id=${integrante.id})}" class="card-link">
+                                Ver perfil completo <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
                     </div>
-                    <div class="about-stats">
-                        <div class="stat-item">
-                            <div class="stat-number" id="docCount">24</div>
-                            <div class="stat-label">Documentos</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-number" id="sectionCount">8</div>
-                            <div class="stat-label">Secciones</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-number" id="contributors">12</div>
-                            <div class="stat-label">Colaboradores</div>
-                        </div>
+                </div>
+            </section>
+            
+            <!-- Sección de Tecnologías -->
+            <section class="tech-section">
+                <div class="section-header">
+                    <h2 class="section-title">
+                        <span class="title-icon"><i class="fas fa-cogs"></i></span>
+                        Tecnologías que Dominamos
+                    </h2>
+                </div>
+                <div class="tech-grid">
+                    <div class="tech-card animate-on-scroll">
+                        <i class="fab fa-java tech-icon"></i>
+                        <span class="tech-name">Java</span>
                     </div>
+                    <div class="tech-card animate-on-scroll">
+                        <i class="fab fa-python tech-icon"></i>
+                        <span class="tech-name">Python</span>
+                    </div>
+                    <div class="tech-card animate-on-scroll">
+                        <i class="fas fa-database tech-icon"></i>
+                        <span class="tech-name">SQL</span>
+                    </div>
+                    <div class="tech-card animate-on-scroll">
+                        <i class="fas fa-mobile-alt tech-icon"></i>
+                        <span class="tech-name">Flutter</span>
+                    </div>
+                    <div class="tech-card animate-on-scroll">
+                        <i class="fas fa-leaf tech-icon"></i>
+                        <span class="tech-name">Spring Boot</span>
+                    </div>
+                    <div class="tech-card animate-on-scroll">
+                        <i class="fas fa-shield-alt tech-icon"></i>
+                        <span class="tech-name">Ciberseguridad</span>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Call to Action -->
+            <section class="cta-section">
+                <div class="cta-content">
+                    <h2 class="cta-title">¿Tienes un proyecto en mente?</h2>
+                    <p class="cta-text">
+                        Estamos listos para ayudarte. Contáctanos y conversemos sobre cómo podemos colaborar.
+                    </p>
+                    <a href="/contacto" class="btn btn-primary btn-large btn-glow">
+                        <i class="fas fa-paper-plane"></i>
+                        Enviar Mensaje
+                    </a>
                 </div>
             </section>
         </main>
-
+        
         <!-- Footer Fragment -->
         <th:block th:replace="~{fragments/footer :: footer}"></th:block>
     </div>
-
+    
+    <!-- Toast para notificaciones -->
     <div class="toast" id="toast">
         <i class="fas fa-check-circle"></i>
         <span id="toastMessage">Operación exitosa!</span>
     </div>
-
+    
+    <!-- Scripts -->
     <script th:src="@{/script.js}"></script>
 </body>
 </html>
